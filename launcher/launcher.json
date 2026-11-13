@@ -1,0 +1,17 @@
+{
+  "title": "The House of the Dead 2 (PC)",
+  "repo": "sp00nznet/hotd2-recomp",
+  "accent": "#b01818",
+  "note": {
+    "default": "The build takes about 15 minutes and 2 GB. Python (with pefile and capstone) and the Visual Studio Build Tools (about 3 GB, 15 to 30 minutes more) are installed if they are missing. Choose the CD's drive, a folder copy of the CD, or an .iso of it. The CD check passes with your disc in the drive or your disc image mounted. It reaches the title and the attract demo; playing by hand is not working yet."
+  },
+  "game": {
+    "name": "The House of the Dead 2",
+    "files": ["HOD2.ICO|hod2.ico|Hod2.exe|*.iso"]
+  },
+  "sources": [{ "repo": "sp00nznet/pcrecomp", "ref": "pcrecomp-stp", "dir": "pcrecomp" }],
+  "setup": {
+    "default": ["cmd", "/c", "Setup.cmd", "-Yes", "-GameDir", "{game}"]
+  },
+  "play": "The House of the Dead 2.lnk"
+}
