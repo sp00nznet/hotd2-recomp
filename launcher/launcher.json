@@ -9,7 +9,7 @@
     "name": "The House of the Dead 2",
     "files": ["HOD2.ICO|hod2.ico|Hod2.exe|*.iso"]
   },
-  "sources": [{ "repo": "sp00nznet/pcrecomp", "ref": "pcrecomp-stp", "dir": "pcrecomp" }],
+  "sources": [{ "repo": "sp00nznet/pcrecomp", "ref": "main", "dir": "pcrecomp" }],
   "setup": {
     "default": ["cmd", "/c", "Setup.cmd", "-Yes", "-GameDir", "{game}"]
   },

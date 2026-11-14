@@ -7,11 +7,11 @@
 Prerequisites: Windows 10/11, **Python 3.10+** (`py -3 --version`), **git**,
 **Visual Studio 2022** (or its Build Tools) with *Desktop development with
 C++*, and the pcrecomp toolkit cloned **beside** this repository as `pcrecomp`,
-on its **`pcrecomp-stp`** branch (the guest registry, synthetic DirectInput and DirectDraw fixes this game plays on are not on pcrecomp `main` yet):
+on its `main` branch:
 
 ```
 some-folder\
-  pcrecomp\                     <- git clone -b pcrecomp-stp https://github.com/sp00nznet/pcrecomp
+  pcrecomp\                     <- git clone https://github.com/sp00nznet/pcrecomp
   hotd2\                        <- this repository
 ```
 

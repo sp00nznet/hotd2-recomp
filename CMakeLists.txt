@@ -21,7 +21,7 @@ endif()
 set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 set(PCRECOMP "${CMAKE_SOURCE_DIR}/../pcrecomp" CACHE PATH "pcrecomp checkout")
-include(${PCRECOMP}/cmake/pcrecomp_gen.cmake)   # needs pcrecomp with cmake/ (pcrecomp-hostfixes)
+include(${PCRECOMP}/cmake/pcrecomp_gen.cmake)   # needs pcrecomp with cmake/ (main)
 
 add_executable(hotd2
   src/runtime/host.c

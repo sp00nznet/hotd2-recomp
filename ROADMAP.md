@@ -3,7 +3,6 @@
 ## Next
 - Input without a script: windowed, DirectInput still has to acquire the
   real mouse and keyboard (scripted runs replace the devices' state).
-- Back onto pcrecomp `main` once `pcrecomp-stp`'s native32 work is merged there.
 - Sound: check DirectSound by ear (`--sound`).
 - A conformance harness (REPO_RULES section 9): title, attract, a stage
   start, as milestones with a pass count and a baseline, in the shape of

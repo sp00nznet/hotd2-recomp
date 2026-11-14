@@ -12,9 +12,8 @@
 #   -GameDir <drive, folder, .iso or .cue>   skip the question (-Game works too)
 #   -Yes                               answer yes to every install question
 #
-# The toolkit is ..\pcrecomp (PCRECOMP overrides it), on its pcrecomp-stp
-# branch: the guest registry, synthetic DirectInput and DirectDraw fixes this
-# game plays on are not on pcrecomp main yet. Under recomp-launcher
+# The toolkit is ..\pcrecomp (PCRECOMP overrides it), on its main
+# branch. Under recomp-launcher
 # (RECOMP_LAUNCHER=1) it never waits for Enter, and exit code 0 means the
 # shortcut is there.
 param([switch]$Force, [switch]$Yes, [Alias('Game')][string]$GameDir = "")
@@ -22,7 +21,7 @@ $Game = $GameDir
 
 $ErrorActionPreference = 'Stop'
 $Root = Split-Path -Parent $PSScriptRoot
-$Branch = 'pcrecomp-stp'
+$Branch = 'main'
 $Toolkit = $env:PCRECOMP
 if (-not $Toolkit) { $Toolkit = Join-Path (Split-Path -Parent $Root) 'pcrecomp' }
 $env:PCRECOMP = $Toolkit   # run_lift.py reads it too
@@ -110,17 +109,18 @@ if (-not (Test-Path (Join-Path $Toolkit 'tools\lift\lift32.py'))) {
   if (-not (Ask "  Download it now (git, about 20 MB)?")) { Fail "pcrecomp is required at $Toolkit." }
   Run "Cloning pcrecomp (branch $Branch)" @('git', 'clone', '--depth', '1', '-b', $Branch, 'https://github.com/sp00nznet/pcrecomp', $Toolkit)
 }
-# PCRECOMP_MUTE is in pcrecomp-stp's native32 and not in main's: the marker
-# that this clone has the branch's runtime.
+# PCRECOMP_MUTE in native32: the marker that this clone has the runtime this
+# game needs (an older main does not).
 $stpOk = { Select-String -Quiet -SimpleMatch 'PCRECOMP_MUTE' (Join-Path $Toolkit 'runtime\native32\native32.c') }
 if (-not (& $stpOk) -and (Test-Path (Join-Path $Toolkit '.git'))) {
-  Say "  Your pcrecomp is not on the $Branch branch this game needs."
-  if (Ask "  Switch it to $Branch now (git fetch and checkout)?") {
-    Run "Fetching $Branch" @('git', '-C', $Toolkit, 'fetch', 'origin', "${Branch}:${Branch}")
+  Say "  Your pcrecomp is older than the $Branch this game needs."
+  if (Ask "  Update it to $Branch now (git fetch, checkout and pull)?") {
+    Run "Fetching $Branch" @('git', '-C', $Toolkit, 'fetch', 'origin', $Branch)
     Run "Switching to $Branch" @('git', '-C', $Toolkit, 'checkout', $Branch)
+    Run "Updating $Branch" @('git', '-C', $Toolkit, 'pull', '--ff-only', 'origin', $Branch)
   }
 }
-if (-not (& $stpOk)) { Fail "your pcrecomp at $Toolkit is not on the $Branch branch. Switch it: git -C `"$Toolkit`" checkout $Branch" }
+if (-not (& $stpOk)) { Fail "your pcrecomp at $Toolkit is older than $Branch. Update it: git -C `"$Toolkit`" checkout $Branch; git -C `"$Toolkit`" pull" }
 Say "  pcrecomp: $Toolkit ($Branch)"
 
 # Visual Studio 2022 or its Build Tools, with the C++ x86 compiler; CMake and

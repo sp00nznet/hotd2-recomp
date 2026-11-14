@@ -13,7 +13,7 @@ are fine.
 
 ## Before a pull request
 
-1. Build from a clean lift against pcrecomp's `pcrecomp-stp` branch:
+1. Build from a clean lift against pcrecomp `main`:
    `py -3 run_lift.py --all` (expected: 4,832 functions, 0 errors), then
    `build.cmd`.
 2. There is no conformance harness yet. Run the scripted stage-1 run in

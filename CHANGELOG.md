@@ -21,6 +21,7 @@ All notable changes to this project are documented here. The format follows
   built at /Od.
 
 ### Changed
+- Builds against pcrecomp main; the `pcrecomp-stp` branch is merged.
 - The CD check runs against a real CD-ROM drive: your disc, or your disc
   image mounted (`CD_DRIVE` names the drive). Setup leaves your image mounted.
 - README rewritten in the pcrecomp house style.

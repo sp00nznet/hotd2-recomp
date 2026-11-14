@@ -8,8 +8,7 @@ DirectSound. It runs SEGA's own code; it is not a remake, an emulator or a
 wrapper DLL.
 
 Built on the [pcrecomp](https://github.com/sp00nznet/pcrecomp) toolchain, on
-its **`pcrecomp-stp`** branch: the guest registry, synthetic DirectInput and
-DirectDraw fixes this game plays on are not on pcrecomp `main` yet. The first
+its `main` branch. The first
 game is a separate project: [hotd-recomp](https://github.com/sp00nznet/hotd-recomp).
 
 ![The title screen, running as recompiled native code](docs/screenshots/title.png)
@@ -31,8 +30,8 @@ check passes with your disc in the drive or your disc image mounted.
 
 The script asks before installing anything (Python 3.10+, `pefile` and
 `capstone`, git, the Visual Studio 2022 C++ tools), clones pcrecomp beside
-this folder on its `pcrecomp-stp` branch (or offers to switch an existing
-clone to it), finds the CD in your drives or asks for a drive, folder, `.iso`
+this folder on `main` (or offers to update an existing
+clone), finds the CD in your drives or asks for a drive, folder, `.iso`
 or `.cue`, copies the installed game into `game\` (unpacking the CD's `.msi`),
 then catalogs, lifts and builds. A rerun skips finished steps; if it stops it
 says why, and the details are in `setup.log`. `-GameDir E:\` skips the
